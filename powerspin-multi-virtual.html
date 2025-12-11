@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+<title>PowerSpin Single + Multi + Virtual</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1920px;
+    background: black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slot {
+    width: 100%;
+    height: calc(100% / 3);
+    position: relative;
+    background: black;
+    overflow: hidden;
+  }
+
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1920px;
+    height: 1080px;
+    transform: translate(-50%, -50%) scale(0.55);
+    transform-origin: center center;
+    border: none;
+    background: black;
+  }
+</style>
+
+<script>
+  const refreshInterval = 1200000; // 20 λεπτά
+  function autoRefreshIframe(id) {
+    const frame = document.getElementById(id);
+    if (!frame) return;
+    setInterval(() => frame.src = frame.src, refreshInterval);
+  }
+  window.onload = () => ["psingle","pmulti","virtual"].forEach(autoRefreshIframe);
+</script>
+</head>
+
+<body>
+
+  <div class="slot">
+    <iframe id="psingle" src="https://ds.opap.gr/powerspin/html/singlespin.html?" allowfullscreen></iframe>
+  </div>
+
+  <div class="slot">
+    <iframe id="pmulti" src="https://ds.opap.gr/powerspin/html/multispin.html?" allowfullscreen></iframe>
+  </div>
+
+  <div class="slot">
+    <iframe id="virtual" src="https://opapmmd.vermantiacloud.com/rush2" allowfullscreen></iframe>
+  </div>
+
+</body>
+</html>
