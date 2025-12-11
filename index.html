@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1920, initial-scale=1.0">
+<title>KINO + PowerSpin + Virtual</title>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1920px;
+    background: black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Τρεις ίσες ζώνες */
+  .slot {
+    width: 100%;
+    height: calc(100% / 3);
+    background: black;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Κάθε iframe είναι landscape 1920×1080 και το κάνουμε scale */
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1920px;
+    height: 1080px;
+    transform: translate(-50%, -50%) scale(0.55);
+    transform-origin: center center;
+    border: none;
+    background: black;
+    overflow: hidden;
+    scrollbar-width: none;
+  }
+
+  iframe::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  /* Auto-refresh κάθε 20 λεπτά */
+  const refreshInterval = 1200000;
+  function autoRefreshIframe(id) {
+    const frame = document.getElementById(id);
+    if (!frame) return;
+    setInterval(() => frame.src = frame.src, refreshInterval);
+  }
+  window.onload = () => ["kino","powerspin","virtual"].forEach(autoRefreshIframe);
+</script>
+</head>
+
+<body>
+
+  <!-- KINO -->
+  <div class="slot">
+    <iframe id="kino" scrolling="no"
+      src="https://ds.opap.gr/games/genericIframe.html?settings=%5B%7B%22category%22%3A%22category%22%2C%22value%22%3A%22kino_v2%22%7D%2C%7B%22category%22%3A%22widget%22%2C%22value%22%3A%22kino_v2%22%7D%2C%7B%22category%22%3A%22templates%22%2C%22value%22%3A%22kino_202205%22%7D%2C%7B%22category%22%3A%22resolutions%22%2C%22value%22%3A%221920x1080%22%7D%5D">
+    </iframe>
+  </div>
+
+  <!-- PowerSpin -->
+  <div class="slot">
+    <iframe id="powerspin" scrolling="no"
+      src="https://ds.opap.gr/games/genericIframe.html?settings=%5B%7B%22category%22%3A%22category%22%2C%22value%22%3A%22powerspin%22%7D%2C%7B%22category%22%3A%22widget%22%2C%22value%22%3A%22powerspin%22%7D%2C%7B%22category%22%3A%22templates%22%2C%22value%22%3A%22singlespin%22%7D%2C%7B%22category%22%3A%22resolutions%22%2C%22value%22%3A%221920x1080%22%7D%5D">
+    </iframe>
+  </div>
+
+  <!-- Virtuals / Rush2 -->
+  <div class="slot">
+    <iframe id="virtual" scrolling="no"
+      src="https://opapmmd.vermantiacloud.com/rush2">
+    </iframe>
+  </div>
+
+</body>
+</html>
